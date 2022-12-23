@@ -1,0 +1,25 @@
+#Training
+save_checkpoint: './checkpoints'
+file_label: './datasets/train_samples/'
+lr: 0.001
+batchsize: 32
+loss_name: binary_crossentropy
+metrics: acc
+#scheduler learning rate
+monitor: loss
+factor: 0.1
+patience: 5
+mode: auto
+min_lr: 0
+#Inference
+input_path: './datasets/demo_samples/demo.jpg'
+config_detectron2: './detectron2_model/All_X152.yaml'
+model_detectron2: './detectron2_model/model_final.pth'
+model_table_line: './pre-trained/checkpoint.h5'
+size: [1024,1024]
+vprob: 0.9
+hprob: 0.9
+col: 100
+row: 100
+alph: 4
+alpha_line_to_line: 500
