@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 from tensorflow.keras.optimizers import Adam
 
+from data.data import gen
 from models import table_net
-from preprocesing import gen
 from table_detect import init_detectron2, make_prediction
 from table_line import detect_line
 from utils import AttrDict, draw_boxes_v2
@@ -38,7 +38,7 @@ def train(args):
         mode=args.mode,
         min_lr=args.min_lr,
     )
-    model = table_net(input_shape=(None,None,3),num_classes=2)
+    model = table_net(input_shape=(None, None, 3), num_classes=2)
     model.compile(optimizer=Adam(lr=args.lr), loss=args.loss_name, metrics=args.metrics)
 
     model.fit_generator(
@@ -63,6 +63,7 @@ def inference(args):
     image = cv2.imread(args.input_path)
     table_list, table_coords = make_prediction(image, detectron2)
     img = table_list[0]
+    # out model
     ceilboxes = detect_line(args=args, img=img, size=args.size, model=tabel_line)
     img_line, ls = draw_boxes_v2(img, ceilboxes)
 
@@ -92,6 +93,7 @@ def main():
         ceilboxes, img_line = inference(opt)
         print(ceilboxes)
         plt.imshow(img_line)
+        plt.savefig("./results/demo.png")
         plt.show()
 
 

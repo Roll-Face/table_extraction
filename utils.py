@@ -15,6 +15,31 @@ class AttrDict(dict):
         self.__dict__ = self
 
 
+def coordinates_img(bboxes):
+    ls = []
+    for box in bboxes:
+        if type(box) is dict:
+            x1, y1, x2, y2, x3, y3, x4, y4 = xy_rotate_box(**box)
+        else:
+            x1, y1, x2, y2, x3, y3, x4, y4 = box[:8]
+        x1, y1, x2, y2, x3, y3, x4, y4 = (
+            int(x1),
+            int(y1),
+            int(x2),
+            int(y2),
+            int(x3),
+            int(y3),
+            int(x4),
+            int(y4),
+        )
+        top_left_x = min([x1, x2, x3, x4])
+        top_left_y = min([y1, y2, y3, y4])
+        bot_right_x = max([x1, x2, x3, x4])
+        bot_right_y = max([y1, y2, y3, y4])
+        ls.append((top_left_x, top_left_y, bot_right_x, bot_right_y))
+    return ls
+
+
 def nms_box(
     boxes: List, scores: List, score_threshold: float = 0.5, nms_threshold: float = 0.3
 ):
