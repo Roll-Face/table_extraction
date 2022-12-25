@@ -14,7 +14,7 @@ from models import table_net
 from table_detect import init_detectron2, make_prediction
 from table_line import detect_line
 from utils import AttrDict, draw_boxes_v2
-
+from table_ocr import inference as inference_ocr
 
 def train(args):
 
@@ -51,7 +51,7 @@ def train(args):
     )
 
 
-def inference(args):
+def inference_line(args):
     # Init model
     detectron2 = init_detectron2(
         file_config=args.config_detectron2, file_checkpoint=args.model_detectron2
@@ -77,10 +77,11 @@ def main():
     )
     subparsers = parser.add_subparsers(help="Actions", dest="action")
     train_parser = subparsers.add_parser("train", help="Start training process")
-    infer_parser = subparsers.add_parser(
-        "infer",
-        help="Infer data with ONNX/TorchScript model, export report if label(s) provided",
+    infer_line_parser = subparsers.add_parser(
+        "infer_line",
+        help="run table line ",
     )
+    infer_ocr_parser = subparsers.add_parser("infer_ocr",help='run table ocr')
 
     args = vars(parser.parse_args())
     with open(args["file_config"], "r", encoding="utf8") as f:
@@ -89,12 +90,14 @@ def main():
 
     if args.get("action") == "train":
         train(opt)
-    if args.get("action") == "infer":
-        ceilboxes, img_line = inference(opt)
+    if args.get("action") == "infer_line":
+        ceilboxes, img_line = inference_line(opt)
         print(ceilboxes)
         plt.imshow(img_line)
         plt.savefig("./results/demo.png")
         plt.show()
+    if args.get('action') == 'infer_ocr':
+        inference_ocr(args=opt)
 
 
 if __name__ == "__main__":

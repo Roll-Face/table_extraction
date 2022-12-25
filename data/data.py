@@ -7,7 +7,7 @@ import six
 from matplotlib.colors import hsv_to_rgb, rgb_to_hsv
 from numpy import cos, pi, sin
 from PIL import Image
-from plot_line import fill_lines, img_argument
+from data.plot_line import fill_lines, img_argument
 
 
 def base64_to_PIL(string):
