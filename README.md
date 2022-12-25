@@ -21,7 +21,7 @@ bash sh scripts/train.sh
 ## Demo Table Line
 
 ```python
-bash sh scripts/infer.sh 
+bash sh scripts/infer_table_line.sh 
 ```
 
 `Step 1: Table detection`
@@ -49,7 +49,7 @@ bash sh scripts/infer.sh
 `Step 5: Save file csv/excel`
 
 ```
-python table_ocr.py
+sh scripts/infer_table_ocr.sh
 ```
 
 `Input: ./datasets/demo_examples/demo2.png`
