@@ -112,7 +112,7 @@ def estimate_skew_angle(raw, angleRange=[-15, 15]):
 
 def eval_angle(img, angleRange=[-5, 5]):
     """
-    估计图片文字的偏移角度
+    Ước tính góc bù của văn bản hình ảnh
     """
     im = Image.fromarray(img)
     degree = estimate_skew_angle(np.array(im.convert("L")), angleRange=angleRange)
