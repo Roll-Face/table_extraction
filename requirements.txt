@@ -1,4 +1,7 @@
 black==22.12.0
+torch==1.8.0
+torchaudio==0.8.0
+torchvision==0.9.0
 Cython==0.29.32
 pycocotools==2.0.6
 fvcore==0.1.5.post20221221
@@ -24,7 +27,4 @@ Send2Trash==1.8.0
 tensorflow==2.11.0
 termcolor==2.1.1
 timm==0.6.12
-torch==1.8.0
-torchaudio==0.8.0
-torchvision==0.9.0
 
