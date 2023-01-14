@@ -10,6 +10,12 @@
 
 Data is private not public, you can learn on internet about tabular data, You can label data by labelme ([wkentaro/labelme: Image Polygonal Annotation with Python (polygon, rectangle, circle, line, point and image-level flag annotation). (github.com)](https://github.com/wkentaro/labelme))
 
+`Refers datasets`:
+  - https://www.icst.pku.edu.cn/cpdp/sjzy/index.htm
+  - https://paperswithcode.com/dataset/icdar-2013
+  - https://doc-analysis.github.io/tablebank-page/
+
+
 ### Training
 
 `Config params: file base_config.yaml`
@@ -21,7 +27,7 @@ bash sh scripts/train.sh
 ## Demo Table Line
 
 ```python
-bash sh scripts/infer.sh 
+bash sh scripts/infer_table_line.sh 
 ```
 
 `Step 1: Table detection`
@@ -49,7 +55,7 @@ bash sh scripts/infer.sh
 `Step 5: Save file csv/excel`
 
 ```
-python table_ocr.py
+sh scripts/infer_table_ocr.sh
 ```
 
 `Input: ./datasets/demo_examples/demo2.png`
@@ -59,3 +65,9 @@ python table_ocr.py
 `Output: ./results/demo.csv`
 
 ![1671956507888](image/README/1671956507888.png)
+
+## References
+1. [nanonets-blog](https://nanonets.com/blog/table-extraction-deep-learning/#tablenet?&utm_source=nanonets.com/blog/&utm_medium=blog&utm_content=Table%20Detection,%20Information%20Extraction%20and%20Structuring%20using%20Deep%20Learning)
+2. [table-detection-structure-recognition](https://github.com/abdoelsayed2016/table-detection-structure-recognition)
+3. [table-transformer](https://github.com/microsoft/table-transformer)
+4. [TableNet: Deep Learning Model for End-to-end Table Detection and Tabular Data Extraction from Scanned Document Images](https://www.researchgate.net/publication/337242893_TableNet_Deep_Learning_Model_for_End-to-end_Table_Detection_and_Tabular_Data_Extraction_from_Scanned_Document_Images)

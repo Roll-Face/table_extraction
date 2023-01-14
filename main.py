@@ -41,15 +41,22 @@ def train(args):
     model = table_net(input_shape=(None, None, 3), num_classes=2)
     model.compile(optimizer=Adam(lr=args.lr), loss=args.loss_name, metrics=args.metrics)
 
-    model.fit_generator(
+    history = model.fit_generator(
         trainloader,
         steps_per_epoch=max(1, len(trainP) // args.batchsize),
-        callbacks=[checkpointer],
+        callbacks=[scheduler,checkpointer],
         validation_data=testloader,
         validation_steps=max(1, len(testP) // args.batchsize),
         epochs=30,
     )
-
+    print(history.history.keys())
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_accuracy'])
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
 
 def inference_line(args):
     # Init model
