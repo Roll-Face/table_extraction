@@ -66,6 +66,10 @@ sh scripts/infer_table_ocr.sh
 
 ![1671956507888](image/README/1671956507888.png)
 
+## Docker
+`
+docker run --name table_extraction nam157/table_extraction:v1.0.0
+`
 ## References
 1. [nanonets-blog](https://nanonets.com/blog/table-extraction-deep-learning/#tablenet?&utm_source=nanonets.com/blog/&utm_medium=blog&utm_content=Table%20Detection,%20Information%20Extraction%20and%20Structuring%20using%20Deep%20Learning)
 2. [table-detection-structure-recognition](https://github.com/abdoelsayed2016/table-detection-structure-recognition)
